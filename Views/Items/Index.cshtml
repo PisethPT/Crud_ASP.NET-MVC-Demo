@@ -1,0 +1,38 @@
+﻿@model List<MyApp.Models.Item>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Data Table</h3>
+<form method="get">
+    <button class="btn btn-primary" asp-action="Insert" asp-controller="Items">Insert Item</button>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Price.ToString("C2")</td>
+                <td>
+                    @* <form asp-action="Edit" asp-route-id="@item.Id" method="get">
+                <button type="submit" class="btn btn-primary">
+                <i class="bi bi-pencil-fill"></i> Edit
+                </button>
+                </form> *@
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <a class="btn btn-primary" asp-action="Delete" asp-route-id="@item.Id"> Delete </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
